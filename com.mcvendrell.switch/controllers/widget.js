@@ -39,6 +39,9 @@ exports.init = function (parentView) {
     // Initialize general sizes
     $.switchView.borderRadius = radius;
     
+    $.switchView.width = dpUnitsToPixels($.switchView.width);
+    $.switchView.height = dpUnitsToPixels($.switchView.height);
+    
     // Rearrange label sizes
     lblWidth = $.switchView.width / 2;
     $.lblCheck.width = lblWidth;
@@ -82,7 +85,8 @@ Object.defineProperty($, "value", {
             $._value = value;
 
             // Create transformation&Animation (not under dip system variable, make manual dip)
-            var x = (value === true) ? dpUnitsToPixels(lblWidth) : 0;
+            //var x = (value === true) ? dpUnitsToPixels(lblWidth) : 0;
+            var x = (value === true) ? lblWidth : 0;
             var trans = Ti.UI.create2DMatrix();
             trans = trans.translate(x, 0);
             var anim = Ti.UI.createAnimation();
